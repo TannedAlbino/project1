@@ -1,0 +1,23 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "be happy project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "happy"
+  ],
+  "author": "UC",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TannedAlbino/project1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TannedAlbino/project1/issues"
+  },
+  "homepage": "https://github.com/TannedAlbino/project1#readme"
+}
