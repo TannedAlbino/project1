@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/TannedAlbino/project1/issues"
   },
-  "homepage": "https://github.com/TannedAlbino/project1#readme"
+  "homepage": "https://github.com/TannedAlbino/project1#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.0",
+    "express-session": "^1.11.3"
+  },
+  "devDependencies": {}
 }
