@@ -10,7 +10,7 @@ $(document).ready(function() {
 function App(){};
 
 App.prototype.getTrending = function(){
-	var url = "http://api.giphy.com/v1/gifs/search?q=funny&api_key=dc6zaTOxFJmzC"
+	var url = "https://api.giphy.com/v1/gifs/search?q=funny&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
 		// this is a GET request. I'm keeping it explicate for you, 
@@ -54,7 +54,7 @@ App.prototype.addEventListener = function(){
 App.prototype.getSearchedGifs = function(searchText){
 	// this takes our string and replaces the white space with '+' to please the API URL gods.
 	var searchText = searchText.split(' ').join('+');
-	var url = "http://api.giphy.com/v1/gifs/search?q=" + searchText + "&api_key=dc6zaTOxFJmzC"
+	var url = "https://api.giphy.com/v1/gifs/search?q=" + searchText + "&api_key=dc6zaTOxFJmzC"
 	var that = this;
 	$.ajax({
 		type: 'GET',
