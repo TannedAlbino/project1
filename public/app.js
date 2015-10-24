@@ -2,14 +2,14 @@ $(document).ready(function() {
 	console.log("testing to make sure of connectivity to public app js");
 	
 	app = new App();
-	app.getTrending();
+	app.getFunny();
 	app.addEventListener();
 
 });
 
 function App(){};
 
-App.prototype.getTrending = function(){
+App.prototype.getFunny = function(){
 	var url = "https://api.giphy.com/v1/gifs/search?q=funny&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({

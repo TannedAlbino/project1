@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
  // var db = require("./models");
 var where = require("./utils/where.js");
 var path = require("path");
- // mongoose.connect("mongodb://localhost");
+ mongoose.connect("mongodb://localhost/project1_app");
 app.set("view engine", "ejs");
 app.use("/static", express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
