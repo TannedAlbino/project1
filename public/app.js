@@ -4,13 +4,32 @@ $(document).ready(function() {
 	app = new App();
 	app.getFunny();
 	app.addEventListener();
-
+	app.getFails;
 });
 
 function App(){};
 
+
+App.prototype.getMotivation = function(){
+	var url = "https://api.giphy.com/v1/gifs/search?q=Motivation&api_key=dc6zaTOxFJmzC"
+	var that = this
+	$.ajax({
+		// this is a GET request. I'm keeping it explicate for you, 
+		// but all ajax calls are GET by default, so this next line isn't 
+		// necessary in this case. 
+		type: 'GET',
+		// the URL where we are getting our data
+		url: url,
+		success: function(object, status){
+			that.parseObject(object)
+		},
+	    error: function(object, status){
+	        console.log("There was an error!");
+	    }
+	});
+};
 App.prototype.getFunny = function(){
-	var url = "https://api.giphy.com/v1/gifs/search?q=funny&api_key=dc6zaTOxFJmzC"
+	var url = "https://api.giphy.com/v1/gifs/search?q=funniest&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
 		// this is a GET request. I'm keeping it explicate for you, 
