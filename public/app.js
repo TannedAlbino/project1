@@ -11,7 +11,7 @@ function App(){};
 
 
 App.prototype.getMotivation = function(){
-	var url = "https://api.giphy.com/v1/gifs/search?q=Motivation&api_key=dc6zaTOxFJmzC"
+	var url = "https://api.giphy.com/v1/gifs/search?limit=10q=Motivation&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
 		// this is a GET request. I'm keeping it explicate for you, 
