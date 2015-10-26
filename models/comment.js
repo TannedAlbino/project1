@@ -5,5 +5,5 @@ var CommentSchema = mongoose.Schema ({
 });
 
 var Comment = mongoose.model('Comment', CommentSchema);
-module.exporst = Comment;
+module.exports = Comment;
 

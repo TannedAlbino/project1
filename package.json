@@ -25,7 +25,8 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "mongoose": "^4.2.0",
-    "express-session": "^1.11.3"
+    "express-session": "^1.11.3",
+    "bcrypt": "^0.8.5"
   },
   "devDependencies": {}
 }

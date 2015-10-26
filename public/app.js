@@ -8,10 +8,19 @@ $(document).ready(function() {
 	app.getMotivation;
 });
 
+var $signupForm = $('#login-nav');
+		$signupForm.on('submit', function(e){
+			e.preventDefault();
+var user = $("#login-nav").serialize();
+	$.post('/email', user, function(data){
+		console.log(data);
+			});
+	});
+
 function App(){};
 
 
-App.prototype.getMotivation = function(){
+App.prototype.getFunnyPic = function(){
 	var url = "https://api.giphy.com/v1/gifs/search?q=Motivation&limit=10&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({

@@ -7,6 +7,8 @@ var mongoose = require("mongoose");
  // var db = require("./models");
 var where = require("./utils/where.js");
 var path = require("path");
+var User = require('.models/user');
+
  // mongoose.connect("mongodb://localhost/project1_app");
 app.set("view engine", "ejs");
 app.use("/static", express.static('public'));
@@ -23,6 +25,24 @@ app.get('/', function (req, res) {
   res.render('index', {});
 });
 
+//login route (renders signup view)
+app.get('/users', function(req, res) {
+	console.log("sending all user data");
+	User.find({}, function(err, allUsers) {
+		res.json(allUsers);
+	});
+});
+
+app.post("/users/", function(req, res) {
+	console.log(req.body);
+	res.json(user);
+});
+
+app.post('/users', function (req, res) {
+	User.createSecure(req.body.email, req.body.password, function (err, user) {
+		res.json(user);
+	});
+});
 
 
 
