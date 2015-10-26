@@ -57,7 +57,7 @@ userSchema.methods.checkPassword = function (password) {
 };
 
 // define user model
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('User', userSchema);
 
 // export user model so it's available to server
 module.exports = User;
