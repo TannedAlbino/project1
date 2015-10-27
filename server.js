@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 app.get('/', function (req, res) {
-// res.send('hello world');
+
   res.render('index', {});
 });
 
@@ -38,7 +38,7 @@ app.get('/signup', function (req, res) {
 	res.render('signup');
 });
 
-app.get('/users', function(req, res) {
+app.get('/user', function(req, res) {
 	console.log("sending all user data");
 	User.find({}, function(err, allUsers) {
 		res.json(allUsers);
@@ -46,7 +46,7 @@ app.get('/users', function(req, res) {
 });
 
 //Sign up route - creates new user with a secure password
-app.post('/users', function (req, res) {
+app.post('/user', function (req, res) {
 	//use the email and password to authenticate
 	User.createSecure(req.body.email, req.body.password, function (err, user) {
 		res.json(user);
@@ -60,7 +60,7 @@ app.post('/server', function (req, res) {
 	});
 });
 //create a user route - new user with a secure password
-app.post('/users', function (req, res) {
+app.post('/user', function (req, res) {
 	console.log('request body: ', req.body);
 	res.json("it worked!");
 });

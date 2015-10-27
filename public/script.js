@@ -11,12 +11,12 @@ var $signupForm = $("#signup-form");
 var signupData = $("#signup-form").serialize();
 console.log(signupData);
 
-$post('/users', signupData, function(response){
+$.post('/user', signupData, function(response){
 	console.log(response);
 });
 
 var user = $("#signup-form").serialize();
-  $.post('/users', user, function(data){
+  $.post('/user', user, function(data){
     console.log(data);
  		
 
