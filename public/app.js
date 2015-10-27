@@ -8,11 +8,11 @@ $(document).ready(function() {
 	app.getMotivation;
 });
 
-var $signupForm = $('#login-nav');
+var $signupForm = $('#singup-form');
 		$signupForm.on('submit', function(e){
 			e.preventDefault();
-var user = $("#login-nav").serialize();
-	$.post('/email', user, function(data){
+var user = $("#signup-form").serialize();
+	$.post('/users', user, function(data){
 		console.log(data);
 			});
 	});

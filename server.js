@@ -9,12 +9,12 @@ var where = require("./utils/where.js");
 var path = require("path");
 var User = require('./models/user.js');
 
- // mongoose.connect("mongodb://localhost/project1_app");
+
 app.set("view engine", "ejs");
 app.use("/static", express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 console.log("variables loaded");
-
+ mongoose.connect("mongodb://localhost/project1");
 //middleware
 
 app.use(express.static('public'));
@@ -26,6 +26,10 @@ app.get('/', function (req, res) {
 });
 
 //login route (renders signup view)
+app.get('/signup', function (req, res) {
+	res.render('signup');
+});
+
 app.get('/users', function(req, res) {
 	console.log("sending all user data");
 	User.find({}, function(err, allUsers) {
