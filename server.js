@@ -48,6 +48,7 @@ app.get('/user', function(req, res) {
 //Sign up route - creates new user with a secure password
 app.post('/user', function (req, res) {
 	//use the email and password to authenticate
+	console.log(req.body);
 	User.createSecure(req.body.email, req.body.password, function (err, user) {
 		res.json(user);
 	});

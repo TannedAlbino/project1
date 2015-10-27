@@ -23,6 +23,7 @@ function App(){};
 App.prototype.getFunnyPic = function(){
 	var url = "https://api.giphy.com/v1/gifs/search?q=Motivation&limit=10&api_key=dc6zaTOxFJmzC"
 	var that = this
+    //add second url called urlImage and make it 
 	$.ajax({
 		// this is a GET request. I'm keeping it explicate for you, 
 		// but all ajax calls are GET by default, so this next line isn't 

@@ -6,6 +6,11 @@ var mongoose = require('mongoose'),
   bcrypt = require('bcrypt'),
   salt = bcrypt.genSaltSync(10);
 
+
+mongoose.connect( process.env.MONGOLAB_URI ||
+          process.env.MONGOHQ_URL ||
+          "mongodb://localhost/project1_app")
+
   // define user schema
 var userSchema = new Schema({
   email: String,
