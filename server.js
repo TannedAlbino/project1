@@ -8,20 +8,28 @@ var mongoose = require("mongoose");
 var where = require("./utils/where.js");
 var path = require("path");
 var User = require('./models/user.js');
-
+var session = require('express-session');
 
 app.set("view engine", "ejs");
 app.use("/static", express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 console.log("variables loaded");
- mongoose.connect("mongodb://localhost/project1");
+ // mongoose.connect("mongodb://localhost/project1");
 //middleware
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
-// mongoose.connect('mongodb://localhost/project1');
+//set session options
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: 'SuperSecretCookie',
+  cookie: { maxAge: 60 * 30 * 1000 }
+}));
+
 app.get('/', function (req, res) {
+// res.send('hello world');
   res.render('index', {});
 });
 
@@ -37,15 +45,43 @@ app.get('/users', function(req, res) {
 	});
 });
 
-app.post("/users/", function(req, res) {
-	console.log(req.body);
-	res.json(user);
-});
-
+//Sign up route - creates new user with a secure password
 app.post('/users', function (req, res) {
+	//use the email and password to authenticate
 	User.createSecure(req.body.email, req.body.password, function (err, user) {
 		res.json(user);
 	});
+//user submitting the login section
+app.post('/server', function (req, res) {
+	//call authenticate function to check if password entered is correct
+	User.authenticate(req.body.email, req.body.password, function (err, user) {
+		res.json(user);
+
+	});
+});
+//create a user route - new user with a secure password
+app.post('/users', function (req, res) {
+	console.log('request body: ', req.body);
+	res.json("it worked!");
+});
+
+
+
+
+
+// app.post("/users", function(req, res) {
+// 	console.log(req.body);
+// 	res.json(user);
+// });
+// user submits the login form
+// app.post('/login', function (req, res) {
+  // call authenticate function to check if password user entered is correct
+  // User.authenticate(req.body.email, req.body.password, function (err, user) {
+    // res.json(user);
+  // });
+// });
+
+
 });
 
 

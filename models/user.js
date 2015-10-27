@@ -1,5 +1,5 @@
 // user.js
-
+console.log("user js is connected to server js and working")
 // require dependencies
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
@@ -25,7 +25,7 @@ console.log("this inside createSecure: ", this);
       console.log(hash);
 
       // create the new user (save to db) with hashed password
-      user.create({
+      UserModel.create({
         email: email,
         passwordDigest: hash
       }, callback);
