@@ -8,7 +8,7 @@ $(document).ready(function() {
 	app.getMotivation;
 });
 
-var $signupForm = $('#singup-form');
+var $signupForm = $('#signup-form');
 		$signupForm.on('submit', function(e){
 			e.preventDefault();
 var user = $("#signup-form").serialize();
