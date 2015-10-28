@@ -22,7 +22,7 @@ userSchema.statics.createSecure = function (email, password, callback) {
   // `this` references our schema
   // store it in variable `user` because `this` changes context in nested callbacks
 console.log("this inside createSecure: ", this);
-  var user = this;
+  // var user = this;
   var UserModel = this;
   // hash password user enters at sign up
   bcrypt.genSalt(function (err, salt) {

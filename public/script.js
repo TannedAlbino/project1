@@ -12,7 +12,7 @@ var signupData = $("#signup-form").serialize();
 console.log(signupData);
 
 $.post('/user', signupData, function(response){
-	console.log(response);
+//	console.log(response);
 });
 
 var user = $("#signup-form").serialize();
