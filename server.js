@@ -19,24 +19,23 @@ var session = require('express-session');
 // 	Flickr.authenticate(flickrOptios, function(error, flickr){
 // 		//flickr is now our API object
 // 	})
+//app dependencies
 app.set("view engine", "ejs");
-
-//double check if I need the "/static"
 app.use("/static", express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-console.log("variables loaded");
+// console.log("variables loaded");
  // mongoose.connect("mongodb://localhost/project1");
 //middleware
 
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(express.static('public'));
+// app.set('view engine', 'ejs');
+// app.use(bodyParser.urlencoded({extended: true}));
 //set session options
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: 'SuperSecretCookie',
-  cookie: { maxAge: 60 * 30 * 1000 }
+  cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
 app.get('/', function (req, res) {
@@ -48,6 +47,12 @@ app.get('/', function (req, res) {
 app.get('/signup', function (req, res) {
 	res.render('signup');
 });
+app.get('/home', function (req, res) {
+	res.render('home');
+});
+app.get('/login', function (req, res) {
+	res.render('login');
+});
 
 app.get('/user', function(req, res) {
 	console.log("sending all user data");
@@ -57,11 +62,20 @@ app.get('/user', function(req, res) {
 });
 
 //Sign up route - creates new user with a secure password
-app.post('/user', function (req, res) {
+app.post('/api/signup', function (req, res) {
 	//use the email and password to authenticate
 	console.log(req.body);
-	User.createSecure(req.body.email, req.body.password, function (err, user) {
-		res.json(user);
+	User.createSecure(req.body.email, req.body.password, function (err, newUser) {
+		if (err) {console.log(err)}
+			console.log('New User Created', newUser)
+			req.session.userId = newUser._id;
+			console.log('newUserid: ', newUser._id)
+			console.log('session userid: ', req.session.userId)
+			res.redirect('/home');
+
+
+
+			// res.json(user);
 	});
 //user submitting the login section
 app.post('/server', function (req, res) {

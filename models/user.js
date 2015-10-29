@@ -13,7 +13,10 @@ mongoose.connect( process.env.MONGOLAB_URI ||
 
   // define user schema
 var userSchema = new Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true
+  },
   passwordDigest: String
 });
 
