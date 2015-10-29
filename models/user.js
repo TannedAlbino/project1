@@ -21,8 +21,10 @@ var userSchema = new Schema({
 userSchema.statics.createSecure = function (email, password, callback) {
   // `this` references our schema
   // store it in variable `user` because `this` changes context in nested callbacks
-console.log("this inside createSecure: ", this);
-  // var user = this;
+
+// console.log("this inside createSecure: ", this);
+// this displayed correctly
+  
   var UserModel = this;
   // hash password user enters at sign up
   bcrypt.genSalt(function (err, salt) {
@@ -41,16 +43,19 @@ console.log("this inside createSecure: ", this);
 // authenticate user (when user logs in)
 userSchema.statics.authenticate = function (email, password, callback) {
   // find user by email entered at log in
-  this.findOne({email: email}, function (err, user) {
-    console.log(user);
+  this.findOne({email: email}, function (err, foundUser) {
+    console.log(foundUser);
 
     // throw error if can't find user
-    if (!user) {
+    if (!foundUser) {
       console.log('No user with email ' + email);
+      callback("Error: no user found", null);
 
     // if found user, check if password is correct
-    } else if (user.checkPassword(password)) {
-      callback(null, user);
+    } else if (foundUser.checkPassword(password)) {
+      callback(null, foundUser);
+    } else {
+      callback("Error: incorrect password", null);
     }
   });
 };

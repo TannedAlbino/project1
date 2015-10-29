@@ -63,21 +63,22 @@ app.post('/server', function (req, res) {
 	});
 });
 //create a user route - new user with a secure password
-app.post('/user', function (req, res) {
-	console.log('request body: ', req.body);
-	res.json("it worked!");
-});
+// app.post('/user', function (req, res) {
+// 	console.log('request body: ', req.body);
+// 	res.json("it worked!");
+// });
 
 
 
 
 
-app.post("/user", function(req, res) {
-	console.log(req.body);
-	res.json(user);
-});
+// app.post("/user", function(req, res) {
+// 	console.log(req.body);
+// 	res.json(user);
+// });
 // authenticate user and set session
-app.post('/sessions', function (req, res) {
+app.post('/session', function (req, res) {
+	console.log(req);
   // call authenticate function to check if password user entered is correct
   User.authenticate(req.body.email, req.body.password, function (err, loggedInUser) {
     if (err) {
@@ -88,7 +89,7 @@ app.post('/sessions', function (req, res) {
     	req.session.userId = loggedInUser._id;
     	res.redirect('/profile');
     }
-    // res.json(user);
+    res.json(user);
   });
 });
 

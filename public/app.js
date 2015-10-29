@@ -3,7 +3,8 @@ $(document).ready(function() {
 	
 	app = new App();
 	app.getFunny();
-	app.addEventListener();
+	app.getFunnyPic();
+	// app.addEventListener();
 	app.getFails;
 	app.getMotivation;
 });
@@ -19,33 +20,14 @@ $(document).ready(function() {
 
 function App(){};
 
-
-App.prototype.getFunnyPic = function(){
-	var url = "https://api.giphy.com/v1/gifs/search?q=Motivation&limit=10&api_key=dc6zaTOxFJmzC"
-	var that = this
-    //add second url called urlImage and make it 
-	$.ajax({
-		// this is a GET request. I'm keeping it explicate for you, 
-		// but all ajax calls are GET by default, so this next line isn't 
-		// necessary in this case. 
-		type: 'GET',
-		// the URL where we are getting our data
-		url: url,
-		success: function(object, status){
-			that.parseObject(object)
-		},
-	    error: function(object, status){
-	        console.log("There was an error!");
-	    }
-	});
-};
 App.prototype.getFunny = function(){
 	var url = "https://api.giphy.com/v1/gifs/search?limit=10&q=funny&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
-		// this is a GET request. I'm keeping it explicate for you, 
-		// but all ajax calls are GET by default, so this next line isn't 
-		// necessary in this case. 
+		// this is a GET request. all ajax calls are GET by default, so this next line isn't 
+		// necessary in this case.
+	
+ 
 		type: 'GET',
 		// the URL where we are getting our data
 		url: url,
@@ -58,6 +40,33 @@ App.prototype.getFunny = function(){
 	});
 };
 
+
+App.prototype.getFunnyPic = function(){
+	var url = "https://api.instagram.com/v1/tags/nofilter/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f"
+	var that = this
+    //add second url called urlImage and make it 
+	$.ajax({
+		
+		// ajax calls are GET by default, so this next line isn't 
+		// necessary in this case. 
+			// flickr.photos.search({
+  // 		text: "red+panda"
+		// }, function(err, result) {
+  // 		if(err) { throw new Error(err); }
+  // do something with result
+		type: 'GET',
+		// the URL where we are getting our data
+		url: url,
+		success: function(object, status){
+			that.parseObject(object)
+		},
+	    error: function(object, status){
+	        console.log("There was an error!");
+	    }
+	});
+};
+
+//parse for the gifs
 App.prototype.parseObject = function(object){
 	$('#gifs').empty();
 	var gifs = object.data;
@@ -66,35 +75,52 @@ App.prototype.parseObject = function(object){
 		that.renderGif(gifObject.images.fixed_height.url)
 	});
 };
+
+//parse for the images
+App.prototype.parseObject = function(object){
+	$('#images').empty();
+	var images = object.data;
+	var that = this;
+	images.forEach(function(imagesObject) {
+		that.renderImages(imagesObject.images.fixed_height.url)
+	});
+}
 //can simply add a height and width in this image source
 App.prototype.renderGif = function(imgUrl){
 	var img = '<div class="thumbnail"><img src=' + imgUrl + ' width=300px><br>'
 	$('#gifs').append(img)
 }
-
-App.prototype.addEventListener = function(){
-	var that = this;
-	$('#search-button').on('click', function(event){
-		event.preventDefault();
-		var searchText = $('#search-box').val();
-		that.getSearchedGifs(searchText);
-	})
+//for images
+App.prototype.renderImages = function (imgUrl){
+	var img = '<div class="thumbnail"><img src=' + imgUrl + 'width=300px><br>'
+	$('#images').append(img)
 }
 
-App.prototype.getSearchedGifs = function(searchText){
-	// this takes our string and replaces the white space with '+' to please the API URL gods.
-	var searchText = searchText.split(' ').join('+');
-	var url = "https://api.giphy.com/v1/gifs/search?q=" + searchText + "&api_key=dc6zaTOxFJmzC"
-	var that = this;
-	$.ajax({
-		type: 'GET',
-		url: url,
-		success: function(object, status){
-			that.parseObject(object);
-		},
-	    error: function(object, status){
-	        console.log("There was an error!");
-	    }
-	});
-}
+
+//ICEBUCKET add a search field for additional queries with the code below
+// App.prototype.addEventListener = function(){
+// 	var that = this;
+// 	$('#search-button').on('click', function(event){
+// 		event.preventDefault();
+// 		var searchText = $('#search-box').val();
+// 		that.getSearchedGifs(searchText);
+// 	})
+// }
+
+// App.prototype.getSearchedGifs = function(searchText){
+// 	// this takes our string and replaces the white space with '+' to please the API URL gods.
+// 	var searchText = searchText.split(' ').join('+');
+// 	var url = "https://api.giphy.com/v1/gifs/search?q=" + searchText + "&api_key=dc6zaTOxFJmzC"
+// 	var that = this;
+// 	$.ajax({
+// 		type: 'GET',
+// 		url: url,
+// 		success: function(object, status){
+// 			that.parseObject(object);
+// 		},
+// 	    error: function(object, status){
+// 	        console.log("There was an error!");
+// 	    }
+// 	});
+// }
 
