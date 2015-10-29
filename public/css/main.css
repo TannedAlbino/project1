@@ -3,7 +3,18 @@ body{
     background-size: cover;
     padding:50px;
 }
-
+#wrap{
+    width:100%;
+    margin:0 auto;
+}
+.row{
+    float:left;
+    width:48%;
+    
+   
+   
+    margin:0 auto;
+}
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;

@@ -42,7 +42,7 @@ App.prototype.getFunny = function(){
 
 
 App.prototype.getFunnyPic = function(){
-	var url = "https://api.instagram.com/v1/tags/nofilter/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f"
+	var url = "https://api.instagram.com/v1/tags/funniest/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f&count=8"
 	var that = this
     //add second url called urlImage and make it 
 	$.ajax({
@@ -55,10 +55,11 @@ App.prototype.getFunnyPic = function(){
   // 		if(err) { throw new Error(err); }
   // do something with result
 		type: 'GET',
+		dataType: "jsonp",
 		// the URL where we are getting our data
 		url: url,
 		success: function(object, status){
-			that.parseObject(object)
+			that.parseObject2(object)
 		},
 	    error: function(object, status){
 	        console.log("There was an error!");
@@ -77,22 +78,22 @@ App.prototype.parseObject = function(object){
 };
 
 //parse for the images
-App.prototype.parseObject = function(object){
+App.prototype.parseObject2 = function(object){
 	$('#images').empty();
 	var images = object.data;
 	var that = this;
 	images.forEach(function(imagesObject) {
-		that.renderImages(imagesObject.images.fixed_height.url)
+		that.renderImages(imagesObject.images.standard_resolution.url)
 	});
 }
 //can simply add a height and width in this image source
 App.prototype.renderGif = function(imgUrl){
-	var img = '<div class="thumbnail"><img src=' + imgUrl + ' width=300px><br>'
+	var img = '<div class="thumbnail"><img src=' + imgUrl + ' width=300px ><br>'
 	$('#gifs').append(img)
 }
 //for images
 App.prototype.renderImages = function (imgUrl){
-	var img = '<div class="thumbnail"><img src=' + imgUrl + 'width=300px><br>'
+	var img = '<div class="thumbnail"><img src=' + imgUrl + ' width=300px><br>'
 	$('#images').append(img)
 }
 

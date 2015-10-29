@@ -9,7 +9,16 @@ var where = require("./utils/where.js");
 var path = require("path");
 var User = require('./models/user.js');
 var session = require('express-session');
+// var flickr = require('flickrapi');
+// 	flickrOptions = {
+// 		api_key: "c9f9155910083a4768854ba5009200eb",
+// 		secret: "ed414500ae65d5fa"
 
+
+// 	};
+// 	Flickr.authenticate(flickrOptios, function(error, flickr){
+// 		//flickr is now our API object
+// 	})
 app.set("view engine", "ejs");
 
 //double check if I need the "/static"
