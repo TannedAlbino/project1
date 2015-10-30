@@ -25,7 +25,7 @@ userSchema.statics.createSecure = function (email, password, callback) {
   // `this` references our schema
   // store it in variable `user` because `this` changes context in nested callbacks
 
-// console.log("this inside createSecure: ", this);
+console.log("this inside createSecure: ", this);
 // this displayed correctly
   
   var UserModel = this;

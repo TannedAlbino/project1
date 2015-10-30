@@ -15,6 +15,9 @@ body{
    
     margin:0 auto;
 }
+.p{
+    color: #fff;
+}
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;

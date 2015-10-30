@@ -2,7 +2,7 @@ $(document).ready(function() {
 	console.log("testing to make sure of connectivity to public app js");
 	// require('dotenv').load();
 	// var dotenv = require('dotenv');
-
+	
 	// var INSTAGRAM_API_KEY = process.env.INSTAGRAM_API_KEY;
 	app = new App();
 	app.getFunny();
@@ -24,7 +24,7 @@ $(document).ready(function() {
 function App(){};
 
 App.prototype.getFunny = function(){
-	var url = "https://api.giphy.com/v1/gifs/search?limit=7&q=funny&api_key=dc6zaTOxFJmzC"
+	var url = "https://api.giphy.com/v1/gifs/search?limit=10&q=fail&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
 		// this is a GET request. all ajax calls are GET by default, so this next line isn't 
@@ -45,7 +45,7 @@ App.prototype.getFunny = function(){
 
 
 App.prototype.getFunnyPic = function(){
-	var url = "https://api.instagram.com/v1/tags/funniest/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f&count=5"
+	var url = "https://api.instagram.com/v1/tags/toofunny/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f&count=8"
 	var that = this
     //add second url called urlImage and make it 
 	$.ajax({

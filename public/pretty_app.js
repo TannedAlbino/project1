@@ -2,29 +2,22 @@ $(document).ready(function() {
 	console.log("testing to make sure of connectivity to public app js");
 	// require('dotenv').load();
 	// var dotenv = require('dotenv');
-
+	
 	// var INSTAGRAM_API_KEY = process.env.INSTAGRAM_API_KEY;
 	app = new App();
-	app.getFunny();
-	app.getFunnyPic();
+	app.getPretty();
+	app.getPrettyPic();
 	// app.addEventListener();
-	app.getFails;
-	app.getMotivation;
+	// app.getFails;
+	// app.getMotivation;
 });
 
-// var $signupForm = $('#signup-form');
-// 		$signupForm.on('submit', function(e){
-// 			e.preventDefault();
-// var user = $("#signup-form").serialize();
-// 	$.post('/users', user, function(data){
-// 		console.log(data);
-// 			});
-// 	});
+
 
 function App(){};
 
-App.prototype.getFunny = function(){
-	var url = "https://api.giphy.com/v1/gifs/search?limit=7&q=funny&api_key=dc6zaTOxFJmzC"
+App.prototype.getPretty = function(){
+	var url = "https://api.giphy.com/v1/gifs/search?limit=10&q=makeup-fails&api_key=dc6zaTOxFJmzC"
 	var that = this
 	$.ajax({
 		// this is a GET request. all ajax calls are GET by default, so this next line isn't 
@@ -44,8 +37,8 @@ App.prototype.getFunny = function(){
 };
 
 
-App.prototype.getFunnyPic = function(){
-	var url = "https://api.instagram.com/v1/tags/funniest/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f&count=5"
+App.prototype.getPrettyPic = function(){
+	var url = "https://api.instagram.com/v1/tags/walmartpeople/media/recent?client_id=e8e933f52cdb49cca32336215450ee2f&count=8"
 	var that = this
     //add second url called urlImage and make it 
 	$.ajax({
@@ -101,30 +94,5 @@ App.prototype.renderImages = function (imgUrl){
 }
 
 
-//ICEBUCKET add a search field for additional queries with the code below
-// App.prototype.addEventListener = function(){
-// 	var that = this;
-// 	$('#search-button').on('click', function(event){
-// 		event.preventDefault();
-// 		var searchText = $('#search-box').val();
-// 		that.getSearchedGifs(searchText);
-// 	})
-// }
 
-// App.prototype.getSearchedGifs = function(searchText){
-// 	// this takes our string and replaces the white space with '+' to please the API URL gods.
-// 	var searchText = searchText.split(' ').join('+');
-// 	var url = "https://api.giphy.com/v1/gifs/search?q=" + searchText + "&api_key=dc6zaTOxFJmzC"
-// 	var that = this;
-// 	$.ajax({
-// 		type: 'GET',
-// 		url: url,
-// 		success: function(object, status){
-// 			that.parseObject(object);
-// 		},
-// 	    error: function(object, status){
-// 	        console.log("There was an error!");
-// 	    }
-// 	});
-// }
 
