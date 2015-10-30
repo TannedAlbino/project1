@@ -2,6 +2,11 @@ body{
     background:url('http://www.glittergraphicsite.com/wallpaper/beaches/tropical-beach-wallpaper-114.jpg');
     background-size: cover;
     padding:50px;
+    color: yellow;
+}
+footer{
+    color:purple;
+
 }
 #wrap{
     width:100%;
